@@ -1,1 +1,98 @@
+CREATE TABLE users (userId INT AUTO_INCREMENT PRIMARY KEY);
+ALTER TABLE users ADD COLUMN first_name VARCHAR(255);
+ALTER TABLE users ADD COLUMN last_name VARCHAR(255);
+ALTER TABLE users ADD COLUMN email VARCHAR(255);
+ALTER TABLE users ADD COLUMN auth VARCHAR(255);
+ALTER TABLE users ADD COLUMN login_count INT;
+ALTER TABLE users MODIFY login_count INT DEFAULT 0;
+ALTER TABLE users ADD COLUMN join_date DATETIME;
+ALTER TABLE users ADD COLUMN updatedAt DATETIME;
+ALTER TABLE users ADD COLUMN createdAt DATETIME DEFAULT NOW();
 ALTER TABLE users ADD COLUMN approved INT DEFAULT 0;
+ALTER TABLE users ADD COLUMN admin INT DEFAULT 0;
+
+ALTER TABLE users MODIFY COLUMN 
+
+# setting admin accounts
+update users set admin = 1, approved = 1 where userId IN (1,4);
+
+
+
+CREATE TABLE metadata (rowID INT AUTO_INCREMENT PRIMARY KEY);
+ALTER TABLE metadata ADD COLUMN SampleID_samplesheet VARCHAR(100);
+ALTER TABLE metadata ADD COLUMN Site VARCHAR(200);
+ALTER TABLE metadata ADD COLUMN Collection_Date DATETIME;
+ALTER TABLE metadata ADD COLUMN Flow_Rate NUMERIC;
+
+
+
+
+CREATE TABLE qPCR_coverage (rowID INT AUTO_INCREMENT PRIMARY KEY);
+ALTER TABLE qPCR_coverage ADD COLUMN Sample_ID VARCHAR(200);
+ALTER TABLE qPCR_coverage ADD COLUMN CMMR_Barcode VARCHAR(200);
+ALTER TABLE qPCR_coverage ADD COLUMN Target VARCHAR(200);
+ALTER TABLE qPCR_coverage ADD COLUMN Ct NUMERIC;
+ALTER TABLE qPCR_coverage ADD COLUMN copiesperml NUMERIC;
+ALTER TABLE qPCR_coverage ADD COLUMN SampleName VARCHAR(200);
+ALTER TABLE qPCR_coverage ADD COLUMN date_of_collection DATETIME;
+
+
+Genome_coverage 
+CREATE TABLE Genome_coverage (rowID INT AUTO_INCREMENT PRIMARY KEY);
+ALTER TABLE Genome_coverage ADD COLUMN Sample_ID VARCHAR(200);
+ALTER TABLE Genome_coverage ADD COLUMN accession VARCHAR(200);
+ALTER TABLE Genome_coverage ADD COLUMN Start_base INT;
+ALTER TABLE Genome_coverage ADD COLUMN End_base INT;
+ALTER TABLE Genome_coverage ADD COLUMN Mean_depth NUMERIC;
+
+
+Site_coding 
+CREATE TABLE Site_coding (rowID INT AUTO_INCREMENT PRIMARY KEY);
+ALTER TABLE Site_coding  ADD COLUMN Name VARCHAR(255);
+ALTER TABLE Site_coding  ADD COLUMN Code VARCHAR(200);
+
+
+
+Taxonomical_profiles 
+CREATE TABLE Taxonomical_profiles (rowID INT AUTO_INCREMENT PRIMARY KEY);
+
+ALTER TABLE Taxonomical_profiles ADD COLUMN accession VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN reference_length INT;
+ALTER TABLE Taxonomical_profiles ADD COLUMN covered_base INT;
+ALTER TABLE Taxonomical_profiles ADD COLUMN reads_aligned INT;
+ALTER TABLE Taxonomical_profiles ADD COLUMN mean_coverage NUMERIC;
+ALTER TABLE Taxonomical_profiles ADD COLUMN RPKM NUMERIC;
+ALTER TABLE Taxonomical_profiles ADD COLUMN sequence_name VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN taxid VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN kingdom VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN phylum VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN class_var VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN order_var VARCHAR(200);
+
+ALTER TABLE Taxonomical_profiles ADD COLUMN family VARCHAR(255);
+ALTER TABLE Taxonomical_profiles ADD COLUMN genus VARCHAR(255);
+ALTER TABLE Taxonomical_profiles ADD COLUMN species VARCHAR(255);
+ALTER TABLE Taxonomical_profiles ADD COLUMN subspecies VARCHAR(255);
+
+ALTER TABLE Taxonomical_profiles ADD COLUMN strain VARCHAR(255);
+ALTER TABLE Taxonomical_profiles ADD COLUMN seq_pool_ID VARCHAR(200);
+ALTER TABLE Taxonomical_profiles ADD COLUMN total_filtered_reads_in_sample NUMERIC;
+
+
+
+
+WWTP_Location 
+CREATE TABLE WWTP_Location (rowID INT AUTO_INCREMENT PRIMARY KEY);
+ALTER TABLE WWTP_Location ADD COLUMN State VARCHAR(100);
+ALTER TABLE WWTP_Location ADD COLUMN County VARCHAR(255);
+ALTER TABLE WWTP_Location ADD COLUMN City VARCHAR(255);
+ALTER TABLE WWTP_Location ADD COLUMN County VARCHAR(255);
+
+ALTER TABLE WWTP_Location ADD COLUMN WWTP VARCHAR(255);
+ALTER TABLE WWTP_Location ADD COLUMN lat NUMERIC;
+ALTER TABLE WWTP_Location ADD COLUMN lon NUMERIC;
+
+ALTER TABLE WWTP_Location ADD COLUMN county_centroid_lat NUMERIC;
+ALTER TABLE WWTP_Location ADD COLUMN county_centroid_lon NUMERIC;
+ALTER TABLE WWTP_Location ADD COLUMN city_centroid_lat NUMERIC;
+ALTER TABLE WWTP_Location ADD COLUMN city_centroid_lon NUMERIC;
